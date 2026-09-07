@@ -1,51 +1,59 @@
 ## Hi, I'm David
 
-I build Home Assistant integrations for hardware that shipped without one —
-devices that work perfectly well, but that the manufacturer only ever exposed
-through a phone app.
+You bought a thermostat, some blinds, a ceiling fan. They work fine. The only
+thing standing between you and controlling them properly is the manufacturer's
+app.
 
-The pattern is always the same. Something on your wall speaks a private protocol
-to a vendor cloud, and nobody wrote down what it says. So you capture the
-traffic, work out what the bytes mean, and hand the result back to Home
-Assistant as ordinary entities.
+I write the Home Assistant integrations that give those devices back to you.
+Once one is installed, the device appears in Home Assistant like any other: you
+can put it on a dashboard, automate it, or ask your voice assistant for it.
 
-**Everything here is free, MIT-licensed, and runs entirely on your own network.**
-No accounts, no vendor cloud, nothing leaving the house.
+**All of it is free, and all of it runs on your own network.** There is no
+account to create and no cloud to depend on — nothing about your home leaves
+your home.
 
-### 2.4 GHz — Bluetooth Low Energy
+### Bluetooth — 2.4 GHz
 
-- **[daikin_madoka](https://github.com/dasimon135/daikin_madoka)** — Daikin BRC1H
-  "Madoka" wall thermostats. Temperature, mode, fan speed and filter alerts, with
-  no Daikin account and no phone app. Originally
-  [mduran80's work](https://github.com/mduran80/daikin_madoka); this fork has
-  carried it since.
-- **[ha-bluetooth-mesh](https://github.com/dasimon135/ha-bluetooth-mesh)** —
-  Bluetooth SIG Mesh lighting (Häfele Connect Mesh, ThingOS) through the ESPHome
-  proxies you already have. A pure-Python mesh stack, provisioning included, so
-  the discontinued vendor gateway isn't needed.
-- **[ha-bluesight](https://github.com/dasimon135/ha-bluesight)** — Read-only.
-  Shows which Bluetooth proxy holds which connection slot, and names the
-  deadlocks, ghost slots and pairing storms when they happen.
+**[daikin_madoka](https://github.com/dasimon135/daikin_madoka)** — Control your
+Daikin heating and cooling from Home Assistant: set the temperature, change the
+mode, adjust the fan, see when the filter needs cleaning. It reaches the BRC1H
+"Madoka" panel on your wall over Bluetooth, with no Daikin account and no phone
+app. Originally [mduran80's work](https://github.com/mduran80/daikin_madoka);
+this fork has carried it since.
 
-### 433.92 MHz — ISM band
+**[ha-bluetooth-mesh](https://github.com/dasimon135/ha-bluetooth-mesh)** —
+Switch and dim your Häfele Connect Mesh lights from Home Assistant, using the
+ESPHome Bluetooth proxies already scattered around your house. Häfele
+discontinued the gateway these lights needed; this replaces it, so there is no
+extra box to buy.
 
-- **[ha-rf-fan](https://github.com/dasimon135/ha-rf-fan)** — Ceiling fans that
-  only ever came with a handset. It never decodes the protocol: it captures what
-  your remote sends and sends it back, which is why it works with fans I have
-  never seen.
-- **[ha-dooya](https://github.com/dasimon135/ha-dooya)** — Dooya roller blinds
-  and shutters, with position. The motor reports nothing back, so it is timed
-  from travel and recalibrated at the end stops.
+**[ha-bluesight](https://github.com/dasimon135/ha-bluesight)** — When your
+Bluetooth devices keep going unavailable, this tells you why. It shows which
+proxy is holding which connection and names the fault when it finds one. It only
+ever watches — it changes nothing.
 
-### Where things happen
+### Radio — 433.92 MHz
 
-Support lives in each repository's issues — an issue stays readable, searchable
-and linkable long after the conversation ends, which a forum thread does not.
-Say what hardware you have and bring the logs.
+**[ha-rf-fan](https://github.com/dasimon135/ha-rf-fan)** — Put a ceiling fan
+that only came with a remote into Home Assistant. You press each button once
+while it listens, and you get back the speeds, the light, the timer and the
+direction. It never tries to understand the signal, which is why it works with
+fans I have never seen.
 
-Bug reports from people with hardware I don't own are worth more than they look.
-Several of these projects support devices I have never touched, because someone
-was patient enough to run a test build and say what happened.
+**[ha-dooya](https://github.com/dasimon135/ha-dooya)** — Open and close your
+Dooya blinds and shutters, and stop them halfway with a slider. The motor never
+says where it is, so the position is timed from how long the blind travels and
+corrected at each end stop.
+
+### Something not working?
+
+Open an issue in the repository it belongs to. Tell me what hardware you have
+and attach the logs — with those two things I can usually answer within the
+week.
+
+If you have a device I don't own, your bug report is worth more than you would
+think. Several of these projects support hardware I have never touched, because
+someone was patient enough to run a test build and tell me what happened.
 
 **[dasimon135.github.io](https://dasimon135.github.io)** ·
 [buy me a coffee](https://buymeacoffee.com/dasimon135)
